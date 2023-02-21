@@ -12,4 +12,5 @@ export const webRoutes = [
 
   { method: "GET", path: "/dashboard", config: dashboardController.index },
 
+  { method: "GET", path: "/about", config: aboutController.index },
 ];
