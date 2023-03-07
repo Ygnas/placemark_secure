@@ -34,6 +34,6 @@ export const placemarkMongoStore = {
   },
 
   async deleteAllPlacemarks() {
-    await placemark.deleteMany({});
+    await Placemark.deleteMany({});
   },
 };

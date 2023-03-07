@@ -1,0 +1,40 @@
+{{> menu active="account"}}
+
+<div class="card">
+  <div class="card-content">
+    <div class="media">
+      <div class="media-left">
+        <figure class="image is-48x48">
+          <img src="https://bulma.io/images/placeholders/96x96.png" alt="Placeholder image">
+        </figure>
+      </div>
+      <div class="media-content">
+        <p class="title is-4">{{user.firstName}} {{user.lastName}}</p>
+        <p class="subtitle is-6">{{user.email}}</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="box">
+    <form action="/account/edit" method="POST">
+    <h1 class="title is-3">Update Personal details:</h1>
+    <div class="field is-grouped">
+          <div class="control">
+            <label class="label">First Name</label>
+            <input class="input" type="text" placeholder="First Name" name="firstName">
+          </div>
+          <div class="control">
+            <label class="label">Last Name</label>
+            <input class="input" type="text" placeholder="Last Name" name="lastName">
+          </div>
+          <div class="control">
+            <label class="label">Password</label>
+            <input class="input" type="password" placeholder="Password" name="password">
+          </div>
+    </div>
+    <div class="control">
+        <button class="button is-link">Save</button>
+    </div>
+    </form>
+</div>
