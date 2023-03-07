@@ -1,7 +1,23 @@
 <form action="/dashboard/addplacemark" method="POST">
-  <div class="field">
-    <label class="label">Placemark Name</label>
-    <input class="input" type="text" placeholder="Enter placemark name" name="name" />
+  <div class="box">
+    <div class="field is-grouped">
+      <div class="control">
+        <label class="label">Placemark Name</label>
+        <input class="input" type="text" placeholder="Enter placemark name" name="name" />
+      </div>
+      <div class="control">
+        <label class="label">Description</label>
+        <input class="input" type="text" placeholder="Enter placemark description" name="description" />
+      </div>
+      <div class="control">
+        <label class="label">Latitude</label>
+        <input class="input" type="text" placeholder="Enter placemark latitude" name="latitude" />
+      </div>
+      <div class="control">
+        <label class="label">Longitude</label>
+        <input class="input" type="text" placeholder="Enter placemark longitude" name="longitude" />
+      </div>
+    </div>
+    <button class="button is-link">Add Placemark</button>
   </div>
-  <button class="button is-link">Add Placemark</button>
 </form>
