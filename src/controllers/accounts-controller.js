@@ -1,5 +1,5 @@
 import { db } from "../models/db.js";
-import { UserSpec, UserCredentialsSpec } from "../models/joi-schemas.js";
+import { UserSpec, UserCredentialsSpec, UserSpecUpdate } from "../models/joi-schemas.js";
 
 export const accountsController = {
   index: {
@@ -64,6 +64,17 @@ export const accountsController = {
     handler: function (request, h) {
       request.cookieAuth.clear();
       return h.redirect("/");
+    },
+  },
+
+  settings: {
+    handler: async function (request, h) {
+      const loggedInUser = request.auth.credentials;
+      const viewData = {
+        title: "Account Settings",
+        user: loggedInUser,
+      };
+      return h.view("account-view", viewData);
     },
   },
 
