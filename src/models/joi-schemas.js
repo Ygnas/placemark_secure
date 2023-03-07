@@ -14,4 +14,7 @@ export const UserCredentialsSpec = {
 
 export const PlacemarkSpec = {
   name: Joi.string().required(),
+  description: Joi.string().required(),
+  latitude: Joi.number().required(),
+  longitude: Joi.number().required(),
 };
