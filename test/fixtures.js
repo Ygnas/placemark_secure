@@ -28,16 +28,28 @@ export const testUsers = [
 
 export const secretPlacemark = {
   name: "Secret hideout",
+  description: "Where I keep my money",
+  latitude: 0,
+  longitude: 0,
 };
 
 export const testPlacemarks = [
   {
     name: "Best hiking trail",
+    description: "Great views",
+    latitude: 0,
+    longitude: 0,
   },
   {
     name: "Baby mountain",
+    description: "Great for sledding",
+    latitude: 0,
+    longitude: 0,
   },
   {
     name: "Fishing spot",
+    description: "Great for trout",
+    latitude: 0,
+    longitude: 0,
   },
 ];
