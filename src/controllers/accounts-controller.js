@@ -78,6 +78,28 @@ export const accountsController = {
     },
   },
 
+  editSettings: {
+    validate: {
+      payload: UserSpecUpdate,
+      options: { abortEarly: false },
+      failAction: function (request, h, error) {
+        return h.view("account-view", { title: "Edit Account Settings error", errors: error.details }).takeover().code(400);
+      },
+    },
+    handler: async function (request, h) {
+      const user = await db.userStore.getUserByEmail(request.auth.credentials.email);
+      const updatedUser = {
+        firstName: request.payload.firstName,
+        lastName: request.payload.lastName,
+        password: request.payload.password,
+      };
+      console.log(updatedUser);
+      console.log(user);
+      await db.userStore.updateUser(user, updatedUser);
+      return h.redirect("/account");
+    },
+  },
+
   async validate(request, session) {
     const user = await db.userStore.getUserById(session.id);
     if (!user) {
