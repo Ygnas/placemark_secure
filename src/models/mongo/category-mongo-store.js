@@ -37,7 +37,7 @@ export const categoryMongoStore = {
     }
   },
 
-  async deleteAllCategorys() {
+  async deleteAllCategories() {
     await Category.deleteMany({});
   }
 };

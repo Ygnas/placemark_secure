@@ -24,4 +24,6 @@ export const webRoutes = [
 
   { method: "GET", path: "/account", config: accountsController.settings },
   { method: "POST", path: "/account/edit", config: accountsController.editSettings },
+
+  { method: "GET", path: "/{param*}", handler: { directory: { path: "./public" } }, options: { auth: false } },
 ];

@@ -13,22 +13,17 @@ export const placemarkMongoStore = {
     return this.getPlacemarkById(placemarkObj._id);
   },
 
+  async getPlacemarkByCategoryId(id) {
+    const placemarks = await Placemark.find({ categoryid: id }).lean();
+    return placemarks;
+  },
+
   async getPlacemarkById(id) {
     if (id) {
       const placemark = await Placemark.findOne({ _id: id }).lean();
       return placemark;
     }
     return null;
-  },
-
-  async getPlacemarkByCategoryId(id) {
-    const placemark = await Placemark.find({ categoryid: id }).lean();
-    return placemark;
-  },
-
-  async getUserPlacemarks(id) {
-    const placemark = await Placemark.find({ userid: id }).lean();
-    return placemark;
   },
 
   async deletePlacemark(id) {
@@ -41,5 +36,13 @@ export const placemarkMongoStore = {
 
   async deleteAllPlacemarks() {
     await Placemark.deleteMany({});
+  },
+
+  async updatePlacemark(placemark, updatedPlacemark) {
+    const placemarkDoc = await Placemark.findOne({ _id: placemark._id });
+    placemarkDoc.title = updatedPlacemark.title;
+    placemarkDoc.artist = updatedPlacemark.artist;
+    placemarkDoc.duration = updatedPlacemark.duration;
+    await placemarkDoc.save();
   },
 };
