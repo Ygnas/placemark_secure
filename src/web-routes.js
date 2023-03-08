@@ -13,13 +13,12 @@ export const webRoutes = [
   { method: "POST", path: "/authenticate", config: accountsController.login },
 
   { method: "GET", path: "/dashboard", config: dashboardController.index },
-  { method: "POST", path: "/dashboard/addplacemark", config: dashboardController.addPlacemark },
-  { method: "GET", path: "/dashboard/deleteplacemark/{id}", config: dashboardController.deletePlacemark },
   { method: "POST", path: "/dashboard/addcategory", config: dashboardController.addCategory },
   { method: "GET", path: "/dashboard/deletecategory/{id}", config: dashboardController.deleteCategory },
 
   { method: "GET", path: "/category/{id}", config: categoryController.index },
   { method: "POST", path: "/category/{id}/addplacemark", config: categoryController.addPlacemark },
+  { method: "GET", path: "/category/{id}/deleteplacemark/{placemarkid}", config: categoryController.deletePlacemark },
 
   { method: "GET", path: "/about", config: aboutController.index },
 
@@ -28,7 +27,6 @@ export const webRoutes = [
 
   { method: "GET", path: "/placemark/{id}/editplacemark/{placemarkid}", config: placemarkController.index },
   { method: "POST", path: "/placemark/{id}/updateplacemark/{placemarkid}", config: placemarkController.update },
-
 
   { method: "GET", path: "/{param*}", handler: { directory: { path: "./public" } }, options: { auth: false } },
 ];

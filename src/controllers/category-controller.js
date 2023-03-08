@@ -37,9 +37,9 @@ export const categoryController = {
 
   deletePlacemark: {
     handler: async function (request, h) {
-      const placemark = await db.placemarkStore.getPlacemarkById(request.params.id);
+      const category = await db.categoryStore.getCategoryById(request.params.id);
       await db.placemarkStore.deletePlacemark(request.params.placemarkid);
-      return h.redirect(`/placemark/${placemark._id}`);
+      return h.redirect(`/category/${category._id}`);
     },
   },
 };
