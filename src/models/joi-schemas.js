@@ -24,3 +24,7 @@ export const PlacemarkSpec = {
   latitude: Joi.number().required(),
   longitude: Joi.number().required(),
 };
+
+export const CategorySpec = {
+  title: Joi.string().required(),
+};
