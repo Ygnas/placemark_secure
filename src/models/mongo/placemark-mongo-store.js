@@ -40,9 +40,10 @@ export const placemarkMongoStore = {
 
   async updatePlacemark(placemark, updatedPlacemark) {
     const placemarkDoc = await Placemark.findOne({ _id: placemark._id });
-    placemarkDoc.title = updatedPlacemark.title;
-    placemarkDoc.artist = updatedPlacemark.artist;
-    placemarkDoc.duration = updatedPlacemark.duration;
+    placemarkDoc.name = updatedPlacemark.name;
+    placemarkDoc.description = updatedPlacemark.description;
+    placemarkDoc.latitude = updatedPlacemark.latitude;
+    placemarkDoc.longitude = updatedPlacemark.longitude;
     await placemarkDoc.save();
   },
 };
