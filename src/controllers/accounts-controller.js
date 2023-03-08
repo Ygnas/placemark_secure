@@ -93,8 +93,6 @@ export const accountsController = {
         lastName: request.payload.lastName,
         password: request.payload.password,
       };
-      console.log(updatedUser);
-      console.log(user);
       await db.userStore.updateUser(user, updatedUser);
       return h.redirect("/account");
     },
