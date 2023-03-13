@@ -1,9 +1,9 @@
 import { assert } from "chai";
-import { db } from "../src/models/db.js";
-import { maggie, testUsers } from "./fixtures.js";
-import { assertSubset } from "./test-utils.js";
+import { db } from "../../src/models/db.js";
+import { maggie, testUsers } from "../fixtures.js";
+import { assertSubset } from "../test-utils.js";
 
-suite("User API tests", () => {
+suite("User Mongo tests", () => {
   setup(async () => {
     db.init();
     await db.userStore.deleteAll();
@@ -52,5 +52,12 @@ suite("User API tests", () => {
     await db.userStore.deleteUserById("bad-id");
     const allUsers = await db.userStore.getAllUsers();
     assert.equal(testUsers.length, allUsers.length);
+  });
+
+  test("make user admin", async () => {
+    await db.userStore.makeUserAdmin(testUsers[0]._id);
+    const returnedUser = await db.userStore.getUserById(testUsers[0]._id);
+    console.log(returnedUser)
+    assert.isTrue(returnedUser.admin);
   });
 });

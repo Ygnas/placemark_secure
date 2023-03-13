@@ -6,10 +6,16 @@ export const placemarkMongoStore = {
     return placemarks;
   },
 
-  async addPlacemark(placemark) {
+  async addPlacemark(categoryId, placemark) {
+    placemark.categoryid = categoryId;
     const newPlacemark = new Placemark(placemark);
     const placemarkObj = await newPlacemark.save();
     return this.getPlacemarkById(placemarkObj._id);
+  },
+
+  async getPlacemarkByCategoryId(id) {
+    const placemarks = await Placemark.find({ categoryid: id }).lean();
+    return placemarks;
   },
 
   async getPlacemarkById(id) {
@@ -18,11 +24,6 @@ export const placemarkMongoStore = {
       return placemark;
     }
     return null;
-  },
-
-  async getUserPlacemarks(id) {
-    const placemark = await Placemark.find({ userid: id }).lean();
-    return placemark;
   },
 
   async deletePlacemark(id) {
@@ -35,5 +36,14 @@ export const placemarkMongoStore = {
 
   async deleteAllPlacemarks() {
     await Placemark.deleteMany({});
+  },
+
+  async updatePlacemark(placemark, updatedPlacemark) {
+    const placemarkDoc = await Placemark.findOne({ _id: placemark._id });
+    placemarkDoc.name = updatedPlacemark.name;
+    placemarkDoc.description = updatedPlacemark.description;
+    placemarkDoc.latitude = updatedPlacemark.latitude;
+    placemarkDoc.longitude = updatedPlacemark.longitude;
+    await placemarkDoc.save();
   },
 };

@@ -6,10 +6,11 @@
       <th>Latitude</th>
       <th>Longitude</th>
       <th></th>
+      <th></th>
     </tr>
   </thead>
   <tbody>
-    {{#each placemarks}}
+    {{#each category.placemarks}}
       <tr>
         <td>
           {{name}}
@@ -24,7 +25,13 @@
           {{longitude}}
         </td>
         <td>
-          <a href="/dashboard/deleteplacemark/{{_id}}" class="button">
+        <td>
+          <a href="/placemark/{{../category._id}}/editplacemark/{{_id}}" class="ui icon button">
+            <i class="fas fa-edit"></i>
+          </a>
+        </td>
+        <td>
+          <a href="/category/{{../category._id}}/deleteplacemark/{{_id}}" class="ui icon button">
             <i class="fas fa-trash"></i>
           </a>
         </td>
