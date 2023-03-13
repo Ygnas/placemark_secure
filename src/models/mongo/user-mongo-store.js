@@ -42,4 +42,11 @@ export const userMongoStore = {
   async updateUser(user, updatedUser) {
     await User.updateOne({ _id: user._id }, updatedUser);
   },
+
+  async makeUserAdmin(user) {
+    const adminUser = {
+      admin: true,
+    }
+    await this.updateUser(user, adminUser);
+  }
 };
