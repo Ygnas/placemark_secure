@@ -2,8 +2,13 @@ import Joi from "joi";
 
 export const IdSpec = Joi.alternatives().try(Joi.string(), Joi.object()).description("a valid ID");
 
-export const UserCredentialsSpec = Joi.object()
+export const AdminSpec = Joi.object()
   .keys({
+    admin: Joi.boolean().example(false).optional(),
+  })
+  .label("Admin");
+
+export const UserCredentialsSpec = AdminSpec.keys({
     email: Joi.string().email().example("homer@simpson.com").required(),
     password: Joi.string().example("secret").required(),
   })
