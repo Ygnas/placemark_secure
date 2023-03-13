@@ -1,66 +1,67 @@
 {{> menu active="admin"}}
 
 <section class="section">
-    <div class="container">
-        <h1 class="title">Admin Dashboard</h1>
-    </div>
-    <div class="tile is-ancestor">
-        <div class="tile is-vertical is-12">
-            <div class="tile">
-                <div class="tile is-parent is-vertical">
-                    <article class="tile is-child box notification is-info">
-                        <p class="title">Total Users <i class="fas fa-users"></i></p>
-                        <p class="subtitle">{{allUsers.length}}</p>
-                    </article>
-                </div>
-                <div class="tile is-parent">
-                    <article class="tile is-child box notification is-success">
-                        <p class="title">Total Categories <i class="fas fa-folder-open"></i></p>
-                        <p class="subtitle">{{allCategories.length}}</p>
-                    </article>
-                </div>
-                <div class="tile is-parent">
-                    <article class="tile is-child box notification is-danger">
-                        <p class="title">Total Placemarks <i class="fas fa-map-marked"></i></p>
-                        <p class="subtitle">{{allPlacemarks.length}}</p>
-                    </article>
-                </div>
-            </div>
+  <div class="container">
+    <h1 class="title">Admin Dashboard</h1>
+  </div>
+  <div class="tile is-ancestor">
+    <div class="tile is-vertical is-12">
+      <div class="tile">
+        <div class="tile is-parent is-vertical">
+          <article class="tile is-child box notification is-info">
+            <p class="title">Total Users <i class="fas fa-users"></i></p>
+            <p class="subtitle">{{allUsers.length}}</p>
+          </article>
         </div>
-    </div>
-    <div class="tile is-ancestor">
-        <div class="tile is-vertical is-12">
-            <div class="tile">
-                <div class="tile is-parent is-vertical">
-                    <article class="tile is-child box">
-                        <table class="table is-fullwidth">
-                            <thead>
-                                <tr>
-                                    <th>First Name</th>
-                                    <th>Last Name</th>
-                                    <th>Email</th>
-                                    <th>Admin</th>
-                                    <th></th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {{#each allUsers}}
-                                <tr>
-                                    <td>{{firstName}}</td>
-                                    <td>{{lastName}}</td>
-                                    <td>{{email}}</td>
-                                    <td>{{admin}}</td>
-                                    <td>
-                                        <a href="/account/deleteuser/{{_id}}" class="ui icon button">
-                                            <i class="fas fa-trash"></i>
-                                        </a>
-                                    </td>
-                                </tr>
-                                {{/each}}
-                        </table>
-                    </article>
-                </div>
-            </div>
+        <div class="tile is-parent">
+          <article class="tile is-child box notification is-success">
+            <p class="title">Total Categories <i class="fas fa-folder-open"></i></p>
+            <p class="subtitle">{{allCategories.length}}</p>
+          </article>
         </div>
+        <div class="tile is-parent">
+          <article class="tile is-child box notification is-danger">
+            <p class="title">Total Placemarks <i class="fas fa-map-marked"></i></p>
+            <p class="subtitle">{{allPlacemarks.length}}</p>
+          </article>
+        </div>
+      </div>
     </div>
+  </div>
+  <div class="tile is-ancestor">
+    <div class="tile is-vertical is-12">
+      <div class="tile">
+        <div class="tile is-parent is-vertical">
+          <article class="tile is-child box">
+            <table class="table is-fullwidth">
+              <thead>
+                <tr>
+                  <th>First Name</th>
+                  <th>Last Name</th>
+                  <th>Email</th>
+                  <th>Admin</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                {{#each allUsers}}
+                  <tr>
+                    <td>{{firstName}}</td>
+                    <td>{{lastName}}</td>
+                    <td>{{email}}</td>
+                    <td>{{admin}}</td>
+                    <td>
+                      <a href="/account/deleteuser/{{_id}}" class="ui icon button">
+                        <i class="fas fa-trash"></i>
+                      </a>
+                    </td>
+                  </tr>
+                {{/each}}
+              </tbody>
+            </table>
+          </article>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
