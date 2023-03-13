@@ -74,6 +74,14 @@ export const accountsController = {
         title: "Account Settings",
         user: loggedInUser,
       };
+      if (loggedInUser && loggedInUser.admin === true) {
+        const users = await db.userStore.getAllUsers();
+        const categories = await db.categoryStore.getAllCategorys();
+        const placemarks = await db.placemarkStore.getAllPlacemarks();
+        viewData.allUsers = users;
+        viewData.allCategories = categories;
+        viewData.allPlacemarks = placemarks;
+      }
       return h.view("account-view", viewData);
     },
   },
@@ -95,6 +103,33 @@ export const accountsController = {
       };
       await db.userStore.updateUser(user, updatedUser);
       return h.redirect("/account");
+    },
+  },
+
+  deleteUser: {
+    handler: async function (request, h) {
+      await db.userStore.deleteUserById(request.params.id)
+      return h.redirect("/account");
+    },
+  },
+
+  adminDashboard: {
+    handler: async function (request, h) {
+      const loggedInUser = request.auth.credentials;
+      const users = await db.userStore.getAllUsers();
+      const categories = await db.categoryStore.getAllCategorys();
+      const placemarks = await db.placemarkStore.getAllPlacemarks();
+      const viewData = {
+        title: "Admin Dashboard",
+        user: loggedInUser,
+        allUsers: users,
+        allCategories: categories,
+        allPlacemarks: placemarks,
+      };
+      if (!loggedInUser.admin) {
+        return h.redirect("/");
+      }
+      return h.view("admin-view", viewData);
     },
   },
 

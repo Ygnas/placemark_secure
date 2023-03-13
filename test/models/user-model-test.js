@@ -53,4 +53,11 @@ suite("User Mongo tests", () => {
     const allUsers = await db.userStore.getAllUsers();
     assert.equal(testUsers.length, allUsers.length);
   });
+
+  test("make user admin", async () => {
+    await db.userStore.makeUserAdmin(testUsers[0]._id);
+    const returnedUser = await db.userStore.getUserById(testUsers[0]._id);
+    console.log(returnedUser)
+    assert.isTrue(returnedUser.admin);
+  });
 });

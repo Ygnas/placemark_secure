@@ -23,7 +23,6 @@ export const categoryController = {
     },
     handler: async function (request, h) {
       const category = await db.categoryStore.getCategoryById(request.params.id);
-      console.log(category);
       const newPlacemark = {
         name: request.payload.name,
         description: request.payload.description,

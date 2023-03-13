@@ -24,6 +24,8 @@ export const webRoutes = [
 
   { method: "GET", path: "/account", config: accountsController.settings },
   { method: "POST", path: "/account/edit", config: accountsController.editSettings },
+  { method: "GET", path: "/account/deleteuser/{id}", config: accountsController.deleteUser },
+  { method: "GET", path: "/admin", config: accountsController.adminDashboard },
 
   { method: "GET", path: "/placemark/{id}/editplacemark/{placemarkid}", config: placemarkController.index },
   { method: "POST", path: "/placemark/{id}/updateplacemark/{placemarkid}", config: placemarkController.update },
