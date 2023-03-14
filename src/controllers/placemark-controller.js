@@ -4,10 +4,12 @@ import { db } from "../models/db.js";
 export const placemarkController = {
   index: {
     handler: async function (request, h) {
+      const loggedInUser = request.auth.credentials;
       const category = await db.categoryStore.getCategoryById(request.params.id);
       const placemark = await db.placemarkStore.getPlacemarkById(request.params.placemarkid);
       const viewData = {
         title: "Edit Placemark",
+        user: loggedInUser,
         category: category,
         placemark: placemark,
       };
