@@ -5,12 +5,10 @@ export const dashboardController = {
   index: {
     handler: async function (request, h) {
       const loggedInUser = request.auth.credentials;
-      // const placemarks = await db.placemarkStore.getUserPlacemarks(loggedInUser._id);
       const category = await db.categoryStore.getUserCategory(loggedInUser._id);
       const viewData = {
         title: "Placemark Dashboard",
         user: loggedInUser,
-        // placemarks: placemarks,
         category: category,
       };
       return h.view("dashboard-view", viewData);
