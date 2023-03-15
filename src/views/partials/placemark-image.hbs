@@ -7,6 +7,10 @@
     </figure>
   </div>
   <div class="card-content">
+    {{#if placemark.img}}
+      <a href="/placemark/{{placemark._id}}/deleteimage" class="button is-danger">Delete Image</a>
+      <hr />
+    {{/if}}
     <form action="/placemark/{{placemark._id}}/uploadimage" method="POST" enctype="multipart/form-data">
       <div id="file-select" class="file has-name is-fullwidth">
         <label class="file-label">
