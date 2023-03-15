@@ -91,7 +91,8 @@ export const accountsController = {
       payload: UserSpecUpdate,
       options: { abortEarly: false },
       failAction: function (request, h, error) {
-        return h.view("account-view", { title: "Edit Account Settings error", errors: error.details }).takeover().code(400);
+        const user = request.auth.credentials;
+        return h.view("account-view", { title: "Edit Account Settings error", user, errors: error.details }).takeover().code(400);
       },
     },
     handler: async function (request, h) {
