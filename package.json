@@ -37,6 +37,7 @@
     "hapi-swagger": "^16.0.1",
     "joi": "^17.8.3",
     "jsonwebtoken": "^9.0.0",
+    "mais-mongoose-seeder": "^1.0.7",
     "mongoose": "^6.9.2",
     "uuid": "^9.0.0"
   }
