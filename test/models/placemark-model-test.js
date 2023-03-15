@@ -30,14 +30,6 @@ suite("Placemark Model tests", () => {
     assert.equal(testPlacemarks.length, testPlacemarks.length)
   });
 
-  test("delete all placemarkApi", async () => {
-    const placemarks = await db.placemarkStore.getAllPlacemarks();
-    assert.equal(testPlacemarks.length, placemarks.length);
-    await db.placemarkStore.deleteAllPlacemarks();
-    const newPlacemarks = await db.placemarkStore.getAllPlacemarks();
-    assert.equal(0, newPlacemarks.length);
-  });
-
   test("get a placemark - success", async () => {
     const catList = await db.categoryStore.addCategory(category);
     const placemark = await db.placemarkStore.addPlacemark(catList._id, secretPlacemark)
@@ -63,5 +55,13 @@ suite("Placemark Model tests", () => {
     await db.placemarkStore.deletePlacemark("bad-id");
     const placemarks = await db.placemarkStore.getAllPlacemarks();
     assert.equal(placemarks.length, testCategory.length);
+  });
+  
+  test("delete all placemarkApi", async () => {
+    const placemarks = await db.placemarkStore.getAllPlacemarks();
+    assert.equal(testPlacemarks.length, placemarks.length);
+    await db.placemarkStore.deleteAllPlacemarks();
+    const newPlacemarks = await db.placemarkStore.getAllPlacemarks();
+    assert.equal(0, newPlacemarks.length);
   });
 });
