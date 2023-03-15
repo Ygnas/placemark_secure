@@ -1,41 +1,25 @@
-<table class="table is-fullwidth">
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Description</th>
-      <th>Latitude</th>
-      <th>Longitude</th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    {{#each category.placemarks}}
-      <tr>
-        <td>
-          {{name}}
-        </td>
-        <td>
-          {{description}}
-        </td>
-        <td>
-          {{latitude}}
-        </td>
-        <td>
-          {{longitude}}
-        </td>
-        <td>
-        <td>
-          <a href="/placemark/{{../category._id}}/editplacemark/{{_id}}" class="ui icon button">
-            <i class="fas fa-edit"></i>
-          </a>
-        </td>
-        <td>
-          <a href="/category/{{../category._id}}/deleteplacemark/{{_id}}" class="ui icon button">
-            <i class="fas fa-trash"></i>
-          </a>
-        </td>
-      </tr>
-    {{/each}}
-  </tbody>
-</table>
+<div class="columns is-multiline">
+  {{#each category.placemarks}}
+        <div class="column is-one-quarter is-flex">
+          <div class="box">
+            <div class="column">
+              <p class="title is-4">{{name}}</p>
+              <p class="heading">{{description}}</p>
+              <p class="heading">Latitude: {{latitude}}</p>
+              <p class="heading">Longitude: {{longitude}}</p>
+              <a href="/placemark/{{../category._id}}/editplacemark/{{_id}}" class="ui icon button">
+                <i class="fas fa-edit"></i>
+              </a>
+              <a href="/category/{{../category._id}}/deleteplacemark/{{_id}}" class="ui icon button">
+                <i class="fas fa-trash"></i>
+              </a>
+            </div>
+            <div class="column">
+              {{#if img}}
+                <img src={{img}} style="max-height: 256px;"/>
+              {{/if}}
+            </div>
+          </div>
+        </div>
+  {{/each}}
+</div>
