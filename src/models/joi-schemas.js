@@ -27,9 +27,9 @@ export const UserSpecPlus = UserSpec.keys({
 export const UserArray = Joi.array().items(UserSpecPlus).label("UserArray");
 
 export const UserSpecUpdate = {
-  firstName: Joi.string().required(),
-  lastName: Joi.string().required(),
-  password: Joi.string().required(),
+  firstName: Joi.string().allow("").optional(),
+  lastName: Joi.string().allow("").optional(),
+  password: Joi.string().allow("").optional(),
 };
 
 export const PlacemarkSpec = Joi.object()
