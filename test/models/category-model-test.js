@@ -20,14 +20,6 @@ suite("Category Model tests", () => {
     assert.isDefined(categoryN._id);
   });
 
-  test("delete all categorys", async () => {
-    let returnedCategorys = await db.categoryStore.getAllCategorys();
-    assert.equal(returnedCategorys.length, 3);
-    await db.categoryStore.deleteAllCategories();
-    returnedCategorys = await db.categoryStore.getAllCategorys();
-    assert.equal(returnedCategorys.length, 0);
-  });
-
   test("get a category - success", async () => {
     const categoryN = await db.categoryStore.addCategory(category);
     const returnedCategory = await db.categoryStore.getCategoryById(category._id);
@@ -52,5 +44,13 @@ suite("Category Model tests", () => {
     await db.categoryStore.deleteCategoryById("bad-id");
     const allCategorys = await db.categoryStore.getAllCategorys();
     assert.equal(testCategory.length, allCategorys.length);
+  });
+
+  test("delete all categorys", async () => {
+    let returnedCategorys = await db.categoryStore.getAllCategorys();
+    assert.equal(returnedCategorys.length, 3);
+    await db.categoryStore.deleteAllCategories();
+    returnedCategorys = await db.categoryStore.getAllCategorys();
+    assert.equal(returnedCategorys.length, 0);
   });
 });

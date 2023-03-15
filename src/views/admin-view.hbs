@@ -33,32 +33,57 @@
       <div class="tile">
         <div class="tile is-parent is-vertical">
           <article class="tile is-child box">
-            <table class="table is-fullwidth">
-              <thead>
-                <tr>
-                  <th>First Name</th>
-                  <th>Last Name</th>
-                  <th>Email</th>
-                  <th>Admin</th>
-                  <th></th>
-                </tr>
-              </thead>
-              <tbody>
-                {{#each allUsers}}
-                  <tr>
-                    <td>{{firstName}}</td>
-                    <td>{{lastName}}</td>
-                    <td>{{email}}</td>
-                    <td>{{admin}}</td>
-                    <td>
-                      <a href="/account/deleteuser/{{_id}}" class="ui icon button">
-                        <i class="fas fa-trash"></i>
-                      </a>
-                    </td>
-                  </tr>
-                {{/each}}
-              </tbody>
-            </table>
+            {{#each allUsers}}
+              <div class="level-item has-text-centered">
+                <div>
+                  <p class="title is-4">{{firstName}} {{lastName}}</p>
+                  <p class="heading">{{email}}</p>
+                </div>
+              </div>
+              <div class="level-item has-text-centered">
+                <a href="/account/deleteuser/{{_id}}" class="ui icon button">
+                  <i class="fas fa-trash"></i>
+                </a>
+              </div>
+              <hr />
+            {{/each}}
+            <div class="level">
+            </div>
+          </article>
+        </div>
+        <div class="tile is-parent">
+          <article class="tile is-child box">
+            {{#each allCategories}}
+              <div class="level-item has-text-centered">
+                <div>
+                  <p class="title is-4">{{title}}</p>
+                </div>
+              </div>
+              <div class="level-item has-text-centered">
+                <a href="/dashboard/deletecategory/{{_id}}" class="ui icon button">
+                  <i class="fas fa-trash"></i>
+                </a>
+              </div>
+              <hr />
+            {{/each}}
+          </article>
+        </div>
+        <div class="tile is-parent">
+          <article class="tile is-child box">
+            {{#each allPlacemarks}}
+              <div class="level-item has-text-centered">
+                <div>
+                  <p class="title is-4">{{name}} {{lastName}}</p>
+                  <p class="heading">{{description}}</p>
+                </div>
+              </div>
+              <div class="level-item has-text-centered">
+                <a href="/category/{{categoryid}}/deleteplacemark/{{_id}}" class="ui icon button">
+                  <i class="fas fa-trash"></i>
+                </a>
+              </div>
+              <hr />
+            {{/each}}
           </article>
         </div>
       </div>

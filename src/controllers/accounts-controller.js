@@ -101,6 +101,11 @@ export const accountsController = {
         lastName: request.payload.lastName,
         password: request.payload.password,
       };
+      Object.keys(updatedUser).forEach((value) => {
+        if (updatedUser[value] === "") {
+          delete updatedUser[value];
+        }
+      });
       await db.userStore.updateUser(user, updatedUser);
       return h.redirect("/account");
     },
