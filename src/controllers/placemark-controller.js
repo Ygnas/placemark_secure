@@ -62,4 +62,23 @@ export const placemarkController = {
       parse: true,
     },
   },
+
+  deleteImage: {
+    handler: async function (request, h) {
+      try {
+        const placemark = await db.placemarkStore.getPlacemarkById(request.params.id);
+        // Get the image name from the URL
+        // The image name is the last part of the path after the last slash
+        // and before the last dot
+        const imageName = placemark.img.split("/").pop().split(".")[0];
+        await imageStore.deleteImage(imageName);
+        placemark.img = "";
+        await db.placemarkStore.updatePlacemark(placemark, placemark);
+        return h.redirect(`/category/${placemark.categoryid}`);
+      } catch (err) {
+        console.log(err);
+        return h.redirect(`/category/${placemark.categoryid}`);
+    }
+    }
+  }
 };
