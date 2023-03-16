@@ -34,16 +34,18 @@
         <div class="tile is-parent is-vertical">
           <article class="tile is-child box">
             {{#each allUsers}}
-              <div class="level-item has-text-centered">
-                <div>
-                  <p class="title is-4">{{firstName}} {{lastName}}</p>
-                  <p class="heading">{{email}}</p>
+              {{#if _id}}
+                <div class="level-item has-text-centered">
+                  <div>
+                    <p class="title is-4">{{firstName}} {{lastName}}</p>
+                    <p class="heading">{{email}}</p>
+                  </div>
+                    <a href="/account/deleteuser/{{_id}}" class="ui icon button">
+                      <i class="fas fa-trash"></i>
+                    </a>
                 </div>
-                  <a href="/account/deleteuser/{{_id}}" class="ui icon button">
-                    <i class="fas fa-trash"></i>
-                  </a>
-              </div>
-              <br />
+                <br />
+              {{/if}}
             {{/each}}
             <div class="level">
             </div>
@@ -52,31 +54,35 @@
         <div class="tile is-parent">
           <article class="tile is-child box">
             {{#each allCategories}}
-              <div class="level-item has-text-centered">
-                <div>
-                  <p class="title is-4">{{title}}</p>
+              {{#if _id}}
+                <div class="level-item has-text-centered">
+                  <div>
+                    <p class="title is-4">{{title}}</p>
+                  </div>
+                    <a href="/dashboard/deletecategory/{{_id}}" class="ui icon button">
+                      <i class="fas fa-trash"></i>
+                    </a>
                 </div>
-                  <a href="/dashboard/deletecategory/{{_id}}" class="ui icon button">
-                    <i class="fas fa-trash"></i>
-                  </a>
-              </div>
-              <br />
+                <br />
+              {{/if}}
             {{/each}}
           </article>
         </div>
         <div class="tile is-parent">
           <article class="tile is-child box">
             {{#each allPlacemarks}}
-              <div class="level-item has-text-centered">
-                <div>
-                  <p class="title is-4">{{name}} {{lastName}}</p>
-                  <p class="heading">{{description}}</p>
+              {{#if _id}}
+                <div class="level-item has-text-centered">
+                  <div>
+                    <p class="title is-4">{{name}} {{lastName}}</p>
+                    <p class="heading">{{description}}</p>
+                  </div>
+                    <a href="/category/{{categoryid}}/deleteplacemark/{{_id}}" class="ui icon button">
+                      <i class="fas fa-trash"></i>
+                    </a>
                 </div>
-                  <a href="/category/{{categoryid}}/deleteplacemark/{{_id}}" class="ui icon button">
-                    <i class="fas fa-trash"></i>
-                  </a>
-              </div>
-              <br />
+                <br />
+              {{/if}}
             {{/each}}
           </article>
         </div>
