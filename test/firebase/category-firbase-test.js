@@ -3,10 +3,10 @@ import { db } from "../../src/models/db.js";
 import { testCategory, category } from "../fixtures.js";
 import { assertSubset } from "../test-utils.js";
 
-suite("Category Model tests", () => {
+suite("Category Firebase tests", () => {
 
   setup(async () => {
-    db.init();
+    db.init("firebase");
     await db.categoryStore.deleteAllCategories();
     for (let i = 0; i < testCategory.length; i += 1) {
       // eslint-disable-next-line no-await-in-loop
@@ -30,7 +30,8 @@ suite("Category Model tests", () => {
     const id = testCategory[0]._id;
     await db.categoryStore.deleteCategoryById(id);
     const returnedCategorys = await db.categoryStore.getAllCategorys();
-    assert.equal(returnedCategorys.length, testCategory.length - 1);
+    console.log(returnedCategorys);
+    assert.equal(returnedCategorys.size, testCategory.length - 1);
     const deletedCategory = await db.categoryStore.getCategoryById(id);
     assert.isNull(deletedCategory);
   });
@@ -43,14 +44,18 @@ suite("Category Model tests", () => {
   test("delete One Category - fail", async () => {
     await db.categoryStore.deleteCategoryById("bad-id");
     const allCategorys = await db.categoryStore.getAllCategorys();
-    assert.equal(testCategory.length, allCategorys.length);
+    assert.equal(testCategory.length, allCategorys.size);
   });
 
   test("delete all categorys", async () => {
     let returnedCategorys = await db.categoryStore.getAllCategorys();
-    assert.equal(returnedCategorys.length, 3);
+    assert.equal(returnedCategorys.size, 3);
     await db.categoryStore.deleteAllCategories();
     returnedCategorys = await db.categoryStore.getAllCategorys();
-    assert.equal(returnedCategorys.length, 0);
+    if (!returnedCategorys) {
+      returnedCategorys = [];
+      returnedCategorys.size = 0;
+    }
+    assert.equal(returnedCategorys.size, 0);
   });
 });
