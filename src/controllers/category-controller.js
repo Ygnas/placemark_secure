@@ -20,7 +20,8 @@ export const categoryController = {
       payload: PlacemarkSpec,
       options: { abortEarly: false },
       failAction: function (request, h, error) {
-        return h.view("category-view", { title: "Add placemark error", errors: error.details }).takeover().code(400);
+        const user = request.auth.credentials;
+        return h.view("category-view", { title: "Add placemark error", user, errors: error.details }).takeover().code(400);
       },
     },
     handler: async function (request, h) {

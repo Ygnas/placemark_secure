@@ -8,11 +8,13 @@ export const placemarkController = {
       const loggedInUser = request.auth.credentials;
       const category = await db.categoryStore.getCategoryById(request.params.id);
       const placemark = await db.placemarkStore.getPlacemarkById(request.params.placemarkid);
+      const allCategories = await db.categoryStore.getUserCategory(loggedInUser._id);
       const viewData = {
         title: "Edit Placemark",
         user: loggedInUser,
         category: category,
         placemark: placemark,
+        allCategories: allCategories,
       };
       return h.view("placemark-view", viewData);
     },
@@ -23,7 +25,8 @@ export const placemarkController = {
       payload: PlacemarkSpec,
       options: { abortEarly: false },
       failAction: function (request, h, error) {
-        return h.view("placemark-view", { title: "Edit placemark error", errors: error.details }).takeover().code(400);
+        const user = request.auth.credentials;
+        return h.view("placemark-view", { title: "Edit placemark error", user, errors: error.details }).takeover().code(400);
       },
     },
     handler: async function (request, h) {
@@ -33,6 +36,7 @@ export const placemarkController = {
         description: request.payload.description,
         latitude: request.payload.latitude,
         longitude: request.payload.longitude,
+        categoryid: request.payload.categoryid,
       };
       await db.placemarkStore.updatePlacemark(placemark, newPlacemark);
       return h.redirect(`/category/${request.params.id}`);

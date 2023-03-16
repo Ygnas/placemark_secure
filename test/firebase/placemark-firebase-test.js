@@ -3,12 +3,12 @@ import { db } from "../../src/models/db.js";
 import { testPlacemarks, secretPlacemark, category, testCategory } from "../fixtures.js";
 import { assertSubset } from "../test-utils.js";
 
-suite("Placemark Model tests", () => {
+suite("Placemark Firebase tests", () => {
 
   let categoryList = null;
 
   setup(async () => {
-    db.init();
+    db.init("firebase");
     await db.categoryStore.deleteAllCategories();
     await db.placemarkStore.deleteAllPlacemarks();
     categoryList = await db.categoryStore.addCategory(category);
@@ -41,27 +41,31 @@ suite("Placemark Model tests", () => {
     const id = testPlacemarks[0]._id;
     await db.placemarkStore.deletePlacemark(id);
     const placemarks = await db.placemarkStore.getAllPlacemarks();
-    assert.equal(placemarks.length, testCategory.length - 1);
+    assert.equal(placemarks.size, testCategory.length - 1);
     const deletedPlacemark = await db.placemarkStore.getPlacemarkById(id);
     assert.isNull(deletedPlacemark);
   });
 
   test("get a category - bad params", async () => {
-    assert.isNull(await db.placemarkStore.getPlacemarkById(""));
+    assert.isNull(await db.placemarkStore.getPlacemarkById("0"));
     assert.isNull(await db.placemarkStore.getPlacemarkById());
   });
 
   test("delete One User - fail", async () => {
     await db.placemarkStore.deletePlacemark("bad-id");
     const placemarks = await db.placemarkStore.getAllPlacemarks();
-    assert.equal(placemarks.length, testCategory.length);
+    assert.equal(placemarks.size, testCategory.length);
   });
   
   test("delete all placemarkApi", async () => {
     const placemarks = await db.placemarkStore.getAllPlacemarks();
-    assert.equal(testPlacemarks.length, placemarks.length);
+    assert.equal(testPlacemarks.length, placemarks.size);
     await db.placemarkStore.deleteAllPlacemarks();
-    const newPlacemarks = await db.placemarkStore.getAllPlacemarks();
-    assert.equal(0, newPlacemarks.length);
+    let newPlacemarks = await db.placemarkStore.getAllPlacemarks();
+    if (!newPlacemarks) {
+      newPlacemarks = [];
+      newPlacemarks.size = 0;
+    }
+    assert.equal(0, newPlacemarks.size);
   });
 });

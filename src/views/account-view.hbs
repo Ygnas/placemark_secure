@@ -1,26 +1,29 @@
 {{> menu active="account"}}
 
-{{> user-card}}
-
-<div class="box">
-  <form action="/account/edit" method="POST">
-    <h1 class="title is-3">Update Personal details:</h1>
-    <div class="field is-grouped">
-      <div class="control">
-        <label class="label">First Name</label>
-        <input class="input" type="text" placeholder="First Name" name="firstName" />
+<section class="section">
+  {{> user-card}}
+  
+  <div class="box">
+    <form action="/account/edit" method="POST">
+      <p class="title is-4">Update Personal details</p>
+      <div class="field is-grouped">
+        <div class="control">
+          <label class="heading">First Name</label>
+          <input class="input heading" type="text" placeholder="First Name" name="firstName" />
+        </div>
+        <div class="control">
+          <label class="heading">Last Name</label>
+          <input class="input heading" type="text" placeholder="Last Name" name="lastName" />
+        </div>
+        <div class="control">
+          <label class="heading">Password</label>
+          <input class="input heading" type="password" placeholder="Password" name="password" />
+        </div>
       </div>
       <div class="control">
-        <label class="label">Last Name</label>
-        <input class="input" type="text" placeholder="Last Name" name="lastName" />
+        <button class="button is-info is-light heading">Save</button>
+        <p class="heading">*Leave fields empty if you don't want to update them</p>
       </div>
-      <div class="control">
-        <label class="label">Password</label>
-        <input class="input" type="password" placeholder="Password" name="password" />
-      </div>
-    </div>
-    <div class="control">
-      <button class="button is-link">Save</button>
-    </div>
-  </form>
-</div>
+    </form>
+  </div>
+</section>

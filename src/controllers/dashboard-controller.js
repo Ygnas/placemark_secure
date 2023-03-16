@@ -15,41 +15,13 @@ export const dashboardController = {
     },
   },
 
-  addPlacemark: {
-    validate: {
-      payload: PlacemarkSpec,
-      options: { abortEarly: false },
-      failAction: function (request, h, error) {
-        return h.view("category-view", { title: "Add placemark error", errors: error.details }).takeover().code(400);
-      },
-    },
-    handler: async function (request, h) {
-      const category = await db.categoryStore.getCategoryById(request.params.id);
-      const newPlacemark = {
-        name: request.payload.name,
-        description: request.payload.description,
-        latitude: request.payload.latitude,
-        longitude: request.payload.longitude,
-      };
-      await db.placemarkStore.addPlacemark(category._id, newPlacemark);
-      return h.redirect(`/category/${category._id}`);
-    },
-  },
-
-  deletePlacemark: {
-    handler: async function (request, h) {
-      const placemark = await db.placemarkStore.getPlacemarkById(request.params.id);
-      await db.placemarkStore.deletePlacemark(placemark._id);
-      return h.redirect("/dashboard");
-    },
-  },
-
   addCategory: {
     validate: {
       payload: CategorySpec,
       options: { abortEarly: false },
       failAction: function (request, h, error) {
-        return h.view("dashboard-view", { title: "Add Category error", errors: error.details }).takeover().code(400);
+        const user = request.auth.credentials;
+        return h.view("dashboard-view", { title: "Add Category error", user,  errors: error.details }).takeover().code(400);
       },
     },
     handler: async function (request, h) {
