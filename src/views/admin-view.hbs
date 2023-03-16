@@ -1,26 +1,26 @@
 {{> menu active="admin"}}
 
 <section class="section">
-  <div class="container">
-    <h1 class="title">Admin Dashboard</h1>
+  <div class="box">
+    <p class="title is-4">Admin Dashboard</p>
   </div>
   <div class="tile is-ancestor">
     <div class="tile is-vertical is-12">
       <div class="tile">
         <div class="tile is-parent is-vertical">
-          <article class="tile is-child box notification is-info">
+          <article class="tile is-child box notification is-info is-light">
             <p class="title">Total Users <i class="fas fa-users"></i></p>
             <p class="subtitle">{{allUsers.length}}</p>
           </article>
         </div>
         <div class="tile is-parent">
-          <article class="tile is-child box notification is-success">
+          <article class="tile is-child box notification is-success is-light">
             <p class="title">Total Categories <i class="fas fa-folder-open"></i></p>
             <p class="subtitle">{{allCategories.length}}</p>
           </article>
         </div>
         <div class="tile is-parent">
-          <article class="tile is-child box notification is-danger">
+          <article class="tile is-child box notification is-danger is-light">
             <p class="title">Total Placemarks <i class="fas fa-map-marked"></i></p>
             <p class="subtitle">{{allPlacemarks.length}}</p>
           </article>
@@ -39,13 +39,11 @@
                   <p class="title is-4">{{firstName}} {{lastName}}</p>
                   <p class="heading">{{email}}</p>
                 </div>
+                  <a href="/account/deleteuser/{{_id}}" class="ui icon button">
+                    <i class="fas fa-trash"></i>
+                  </a>
               </div>
-              <div class="level-item has-text-centered">
-                <a href="/account/deleteuser/{{_id}}" class="ui icon button">
-                  <i class="fas fa-trash"></i>
-                </a>
-              </div>
-              <hr />
+              <br />
             {{/each}}
             <div class="level">
             </div>
@@ -58,13 +56,11 @@
                 <div>
                   <p class="title is-4">{{title}}</p>
                 </div>
+                  <a href="/dashboard/deletecategory/{{_id}}" class="ui icon button">
+                    <i class="fas fa-trash"></i>
+                  </a>
               </div>
-              <div class="level-item has-text-centered">
-                <a href="/dashboard/deletecategory/{{_id}}" class="ui icon button">
-                  <i class="fas fa-trash"></i>
-                </a>
-              </div>
-              <hr />
+              <br />
             {{/each}}
           </article>
         </div>
@@ -76,13 +72,11 @@
                   <p class="title is-4">{{name}} {{lastName}}</p>
                   <p class="heading">{{description}}</p>
                 </div>
+                  <a href="/category/{{categoryid}}/deleteplacemark/{{_id}}" class="ui icon button">
+                    <i class="fas fa-trash"></i>
+                  </a>
               </div>
-              <div class="level-item has-text-centered">
-                <a href="/category/{{categoryid}}/deleteplacemark/{{_id}}" class="ui icon button">
-                  <i class="fas fa-trash"></i>
-                </a>
-              </div>
-              <hr />
+              <br />
             {{/each}}
           </article>
         </div>
