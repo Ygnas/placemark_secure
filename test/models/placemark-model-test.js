@@ -8,7 +8,7 @@ suite("Placemark Model tests", () => {
   let categoryList = null;
 
   setup(async () => {
-    db.init("mongo");
+    db.init();
     await db.categoryStore.deleteAllCategories();
     await db.placemarkStore.deleteAllPlacemarks();
     categoryList = await db.categoryStore.addCategory(category);
