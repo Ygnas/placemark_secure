@@ -14,7 +14,7 @@ This project is built using `Node.js` and has a number of dependencies listed in
 - `handlebars` as its templating engine
 - `joi` for data validation
 - `jsonwebtoken` for JSON Web Token (JWT) authentication
-- `mongodb` as its database
+- `firebase` as its database or `mongodb`
 
 For a full list of dependencies, please refer to the package.json file.
 
@@ -28,7 +28,7 @@ To install this project, follow these steps:
 
 ## Configuration
 
-Before launching this project, you will need to configure some environment variables. This can be done by creating a `.env` file in the root directory of the cloned repository and copying over the contents of `.env_example`. Then update each variable with your own values.
+Before launching this project, you will need to configure some environment variables. This can be done by creating a `.env` file in the root directory of the cloned repository and copying over the contents of `.env_example`. Then update each variable with your own values. This project uses Firebase as its database but it can be changed to MongoDB by changing `db.init("firebase")` to `db.init()` in `server.js`.
 
 ## Launching
 

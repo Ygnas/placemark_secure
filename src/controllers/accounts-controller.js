@@ -67,6 +67,8 @@ export const accountsController = {
     },
   },
 
+  // The accountSettings function handles requests to the account settings page
+  // It checks if the user is an admin, and if so, sends all users, categories and placemarks to the view
   settings: {
     handler: async function (request, h) {
       const loggedInUser = request.auth.credentials;
@@ -86,6 +88,8 @@ export const accountsController = {
     },
   },
 
+  // The editSettings function handles requests to the edit account settings page
+  // Before sending fields to edit, it removes empty fields
   editSettings: {
     validate: {
       payload: UserSpecUpdate,
@@ -119,6 +123,8 @@ export const accountsController = {
     },
   },
 
+  // The adminDashboard function handles requests to the admin dashboard page
+  // It checks if the user is an admin, and if not, redirects them to the home page
   adminDashboard: {
     handler: async function (request, h) {
       const loggedInUser = request.auth.credentials;
