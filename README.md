@@ -14,7 +14,7 @@ This project is built using `Node.js` and has a number of dependencies listed in
 - `handlebars` as its templating engine
 - `joi` for data validation
 - `jsonwebtoken` for JSON Web Token (JWT) authentication
-- `firebase` as its database or `mongodb`
+- `mongodb` as its database or `firebase`
 
 For a full list of dependencies, please refer to the package.json file.
 
