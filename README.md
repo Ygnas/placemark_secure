@@ -3,8 +3,8 @@
 Placemark is a project about a point of interest, or POI, is a specific point location that someone may find useful or interesting.\
 Deployed website: (Can take up to a minute to launch instance)
 
-- [glitch.me](https://sphenoid-mini-vault.glitch.me/)
-- [render.com](https://placemark-hbg9.onrender.com/)
+- [glitch.me](https://sphenoid-mini-vault.glitch.me/) Use firebase as database
+- [render.com](https://placemark-hbg9.onrender.com/) Use Mongo DB as database
 
 ## Technologies Used
 
@@ -14,7 +14,7 @@ This project is built using `Node.js` and has a number of dependencies listed in
 - `handlebars` as its templating engine
 - `joi` for data validation
 - `jsonwebtoken` for JSON Web Token (JWT) authentication
-- `firebase` as its database or `mongodb`
+- `mongodb` as its database or `firebase`
 
 For a full list of dependencies, please refer to the package.json file.
 

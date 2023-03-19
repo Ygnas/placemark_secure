@@ -88,7 +88,7 @@ async function init() {
   });
   server.auth.default("session");
 
-  db.init("firebase");
+  db.init();
   server.route(webRoutes);
   server.route(apiRoutes);
   await server.start();
