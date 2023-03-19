@@ -3,8 +3,8 @@
 Placemark is a project about a point of interest, or POI, is a specific point location that someone may find useful or interesting.\
 Deployed website: (Can take up to a minute to launch instance)
 
-- [glitch.me](https://sphenoid-mini-vault.glitch.me/)
-- [render.com](https://placemark-hbg9.onrender.com/)
+- [glitch.me](https://sphenoid-mini-vault.glitch.me/) Use firebase as database
+- [render.com](https://placemark-hbg9.onrender.com/) Use Mongo DB as database
 
 ## Technologies Used
 
