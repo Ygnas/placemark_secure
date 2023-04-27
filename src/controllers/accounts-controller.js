@@ -1,6 +1,6 @@
+import bcrypt from "bcrypt";
 import { db } from "../models/db.js";
 import { UserSpec, UserCredentialsSpec, UserSpecUpdate } from "../models/joi-schemas.js";
-import bcrypt from "bcrypt";
 
 const saltRounds = 10;
 
