@@ -152,4 +152,29 @@ export const accountsController = {
     }
     return { isValid: true, credentials: user };
   },
+
+  signupOAuth: {
+    auth: "github-oauth",
+    handler: async function (request, h) {
+      if (!request.auth.isAuthenticated) {
+        return h.view("signup-view", { title: "Sign up error", errors: "Not logged in..." }).takeover().code(400);
+      }
+
+      const user = {
+        firstName: request.auth.credentials.profile.displayName.split(" ")[0],
+        lastName: request.auth.credentials.profile.displayName.split(" ")[1],
+        email: request.auth.credentials.profile.id + "@placemark",
+        password: "",
+        admin: false
+      }
+
+      if (!await db.userStore.getUserByEmail(user.email)) {
+        await db.userStore.addUser(user);
+      }
+
+      const userFromDB = await db.userStore.getUserByEmail(user.email);
+      request.cookieAuth.set({ id: userFromDB._id });
+      return h.redirect("/dashboard");
+    },
+  },
 };
