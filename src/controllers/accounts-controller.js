@@ -163,7 +163,7 @@ export const accountsController = {
       const user = {
         firstName: request.auth.credentials.profile.displayName.split(" ")[0],
         lastName: request.auth.credentials.profile.displayName.split(" ")[1],
-        email: request.auth.credentials.profile.id + "@placemark",
+        email: `${request.auth.credentials.profile.id}@placemark`,
         password: "",
         admin: false
       }
