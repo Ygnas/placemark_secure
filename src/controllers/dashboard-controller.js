@@ -5,7 +5,7 @@ export const dashboardController = {
   index: {
     handler: async function (request, h) {
       const loggedInUser = request.auth.credentials;
-      const category = await db.categoryStore.getUserCategory(loggedInUser._id);
+      const category = await db.categoryStore.getAllCategorys()
       const viewData = {
         title: "Placemark Dashboard",
         user: loggedInUser,
@@ -40,6 +40,12 @@ export const dashboardController = {
       const category = await db.categoryStore.getCategoryById(request.params.id);
       await db.categoryStore.deleteCategoryById(category._id);
       return h.redirect("/dashboard");
+    },
+  },
+
+  welcome: {
+    handler: async function (request, h) {
+      return `Welcome ${  request.params.name}`;
     },
   },
 };
