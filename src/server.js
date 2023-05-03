@@ -9,6 +9,7 @@ import jwt from "hapi-auth-jwt2";
 import HapiSwagger from "hapi-swagger";
 import { fileURLToPath } from "url";
 import Handlebars from "handlebars";
+import fs  from "fs";
 import { webRoutes } from "./web-routes.js";
 import { db } from "./models/db.js";
 import { accountsController } from "./controllers/accounts-controller.js";
@@ -41,7 +42,11 @@ const swaggerOptions = {
 
 async function init() {
   const server = Hapi.server({
-    port: process.env.PORT || 3000,
+    port: process.env.PORT || 3443,
+    tls:  {
+      key: fs.readFileSync("keys/private/webserver.key"),
+      cert: fs.readFileSync("keys/webserver.crt"),
+    }
   });
 
   await server.register(Inert);
