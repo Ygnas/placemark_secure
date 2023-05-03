@@ -80,7 +80,7 @@ async function init() {
   });
 
   const bellAuthOptions = {
-    provider: 'github',
+    provider: "github",
     password: process.env.password, // String used to encrypt cookie
     // used during authorisation steps only
     clientId: process.env.clientId,          // *** Replace with your app Client Id ****
@@ -102,7 +102,7 @@ async function init() {
     validate: validate,
     verifyOptions: { algorithms: ["HS256"] },
   });
-  server.auth.strategy('github-oauth', 'bell', bellAuthOptions);
+  server.auth.strategy("github-oauth", "bell", bellAuthOptions);
   server.auth.default("session");
 
   db.init();
