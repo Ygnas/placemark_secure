@@ -55,7 +55,7 @@ export const accountsController = {
     handler: async function (request, h) {
       const { email, password } = request.payload;
       const user = await db.userStore.getUserByEmail(email);
-      const passwordsMatch = await bcrypt.compare(password, user.password);
+      const passwordsMatch = await bcrypt.compare(password, user ? user.password : "");
       if (!user || !passwordsMatch) {
         return h.redirect("/");
       }
